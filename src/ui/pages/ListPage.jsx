@@ -1,7 +1,7 @@
 import { useSheets } from "../hooks";
 
 import { Link } from "react-router-dom";
-import { ErrorAlert } from "../components/Alerts";
+import { ErrorAlert, WarningAlert } from "../components/Alerts";
 import { Loading } from "../components/Content";
 import Card from "../components/Card";
 
@@ -48,6 +48,8 @@ const ListPage = () => {
         <ErrorAlert message={error} />
       ) : loading ? (
         <Loading />
+      ) : !data ? (
+        <WarningAlert title="Click refresh to reload" />
       ) : (
         <ListView data={data} />
       )}

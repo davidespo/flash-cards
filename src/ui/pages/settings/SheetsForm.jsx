@@ -16,15 +16,19 @@ const SelectedCard = ({}) => {
         <em>Loading...</em>
       ) : (
         <>
-          {data.map(({ title }, i) => (
-            <Link
-              className="btn btn-sm text-bg-light m-2"
-              to={`/lists/${i}`}
-              key={title}
-            >
-              {title}
-            </Link>
-          ))}
+          {!!data ? (
+            data.map(({ title }, i) => (
+              <Link
+                className="btn btn-sm text-bg-light m-2"
+                to={`/lists/${i}`}
+                key={title}
+              >
+                {title}
+              </Link>
+            ))
+          ) : (
+            <p>Refresh to view lists.</p>
+          )}
         </>
       )}
     </InfoAlert>
