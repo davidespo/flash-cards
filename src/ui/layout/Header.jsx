@@ -5,20 +5,12 @@ const Header = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
         <Link className="navbar-brand mono" to="/">
-          react-fire-base
+          Flash Cards
         </Link>
-        <div className="collapse navbar-collapse">
-          <div className="navbar-nav">
-            <NavLink className="nav-link" to="/demo">
-              Demo
-            </NavLink>
-            <NavLink className="nav-link" to="/home">
-              Home
-            </NavLink>
-            <NavLink className="nav-link" to="/settings">
-              Settings
-            </NavLink>
-          </div>
+        <div className="navbar-nav">
+          <NavLink className="nav-link" to="/settings">
+            <i className="fa fa-gear"></i>
+          </NavLink>
         </div>
       </div>
     </nav>

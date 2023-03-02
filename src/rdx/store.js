@@ -6,7 +6,7 @@ import * as models from "./models";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["settings", "user"],
+  whitelist: ["settings", "user", "sheets"],
   //blacklist, version
 };
 

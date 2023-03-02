@@ -1,5 +1,6 @@
-export const NotFound = () => <Content header="404 :: Page Not Found" />;
 export const ComingSoon = () => <Content header="Coming Soon!" />;
+export const Loading = () => <Content header="Loading..." />;
+export const NotFound = () => <Content header="404 :: Page Not Found" />;
 
 const Content = ({ header, children }) => {
   return (

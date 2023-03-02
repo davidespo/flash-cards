@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 export const useSlice = (slice) => {
   return useSelector((state) => state[slice]);
@@ -31,4 +31,13 @@ export const useData = (defaultState, fetcher, pollInterval) => {
     return;
   }, []);
   return { loading, data, error, refresh };
+};
+
+export const useSheets = () => {
+  const { loading, data, error, active, all } = useSlice("sheets");
+  const dispatch = useDispatch();
+  const selectActive = (newActiveSheet) =>
+    dispatch.sheets.selectActiveSheet(newActiveSheet);
+  const refresh = () => dispatch.sheets.refreshActiveSheet();
+  return { loading, data, error, active, all, selectActive, refresh };
 };
