@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSheets } from "../hooks";
 
 import { Link } from "react-router-dom";
@@ -9,7 +10,7 @@ const ListCard = ({ list }) => {
   return (
     <Card title={list.title}>
       <div className="text-center">
-        <Link className="btn btn-primary w-100" to={`/lists/${list._i}`}>
+        <Link className="btn btn-primary w-100" to={`/lists/${list._i}/quiz`}>
           View
         </Link>
       </div>
@@ -36,7 +37,14 @@ const ListView = ({ data }) => {
 };
 
 const ListPage = () => {
-  const { data, error, loading, refresh } = useSheets("sheets");
+  const { active, data, error, loading, refresh } = useSheets("sheets");
+  useEffect(() => {
+    const hasActiveListSet = !!active;
+    const notInitialized = !loading && !data && !error;
+    if (hasActiveListSet && notInitialized) {
+      refresh();
+    }
+  }, [loading, data, error]);
   return (
     <div>
       <div className="pull-right">

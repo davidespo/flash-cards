@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <Routes>
       <Route path="/" element={<ListPage />} />
-      <Route path="/lists/:_i" element={<CardHome />} />
+      <Route path="/lists/:_i/*" element={<CardHome />} />
       <Route path="/settings/*" element={<SettingsHome />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

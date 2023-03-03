@@ -1,10 +1,10 @@
 import Card from "../../components/Card";
 
-const CardOverviewPage = ({ list }) => {
+const CardOverviewPage = ({ items }) => {
   return (
     <div>
       <div className="row">
-        {list.items.map((item) => (
+        {items.map((item) => (
           <div className="col-4 my-5" key={item}>
             <Card>
               <div className="text-center">

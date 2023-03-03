@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { useSheets } from "../../hooks";
 
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ const SelectedCard = ({}) => {
     return <ErrorAlert title={`Active: ${active.title}`} message={error} />;
   }
   return (
-    <InfoAlert title={`Active: ${active.title}`}>
+    <InfoAlert title={`Active Spreadsheet: ${active.title}`}>
       {loading ? (
         <em>Loading...</em>
       ) : (
@@ -20,7 +20,7 @@ const SelectedCard = ({}) => {
             data.map(({ title }, i) => (
               <Link
                 className="btn btn-sm text-bg-light m-2"
-                to={`/lists/${i}`}
+                to={`/lists/${i}/quiz`}
                 key={title}
               >
                 {title}
@@ -36,10 +36,15 @@ const SelectedCard = ({}) => {
 };
 
 const SheetsForm = () => {
-  const { loading, active, all, data, error, refresh } = useSheets("sheets");
-  const dispatch = useDispatch();
-  const onSelect = (newActiveSheet) =>
-    dispatch.sheets.selectActiveSheet(newActiveSheet);
+  const { loading, active, all, data, error, refresh, selectActive } =
+    useSheets("sheets");
+  useEffect(() => {
+    const hasActiveListSet = !!active;
+    const notInitialized = !loading && !data && !error;
+    if (hasActiveListSet && notInitialized) {
+      refresh();
+    }
+  }, [loading, data, error]);
   return (
     <div>
       <div className="pull-right">
@@ -54,12 +59,12 @@ const SheetsForm = () => {
         {all.map((sheet) => {
           const isActive = sheet.id === active.id;
           return (
-            <div className="col-xs-12 col-sm-6 mb-4" key={sheet.id}>
+            <div className="col-12 col-md-6 col-lg-4 mb-4" key={sheet.id}>
               <Card title={sheet.title} kind={isActive ? "success" : ""} fill>
                 <button
                   className="btn btn-primary w-100"
                   disabled={isActive}
-                  onClick={() => onSelect(sheet)}
+                  onClick={() => selectActive(sheet)}
                 >
                   {isActive ? "Active" : "Select"}
                 </button>
