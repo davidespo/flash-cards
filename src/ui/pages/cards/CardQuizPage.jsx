@@ -15,7 +15,7 @@ const CardQuizPage = ({ items }) => {
   return (
     <div
       className="m-3 p-3 border d-flex flex-column"
-      style={{ minHeight: "60vh", minWidth: "400px" }}
+      style={{ minHeight: "75vh", minWidth: "400px" }}
     >
       <div className="flex-grow-1 d-flex">
         <div className="d-flex align-content-stretch">
@@ -27,8 +27,8 @@ const CardQuizPage = ({ items }) => {
             <i className="fa fa-angle-double-left"></i> Back
           </button>
         </div>
-        <div className="display-1 flex-grow-1 d-flex justify-content-center">
-          <div className="d-flex align-content-around flex-wrap">
+        <div className="flex-grow-1 d-flex justify-content-center">
+          <div className="d-flex align-content-around flex-wrap display-1 p-3">
             {index < count ? shuffledItems[index] : "🥳🎉👏"}
           </div>
         </div>

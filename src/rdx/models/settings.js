@@ -1,6 +1,6 @@
 const DEFAULT_STATE = {};
 
-export const count = {
+export const settings = {
   state: { ...DEFAULT_STATE },
   reducers: {
     set(state, payload) {
